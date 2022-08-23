@@ -1,6 +1,9 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'dotenv-rails', groups: [:development, :test]
+
+
 ruby "3.1.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -63,3 +66,10 @@ end
 
 
 gem "tailwindcss-rails", "~> 2.0"
+
+require 'byebug'
+
+gem 'rest-client'
+gem 'json'
+gem 'pry'
+
