@@ -10,7 +10,7 @@
 
 # ENV["KEY"]
 
-
+############# FIRST API TRY 
 # actual_link = RestClient.get(coast_array["datos"])
 # actual_array_link = JSON.parse(actual_link)
 
@@ -18,21 +18,44 @@
 #     binding.pry
 # end 
 
-
 # response = RestClient.get("https://opendata.aemet.es/opendata/api/prediccion/maritima/costera/costa/42?api_key=#{ENV["AEMET_KEY"]}")
 # coast_array = JSON.parse(response)
 
-require 'uri'
-require 'net/http'
-require 'openssl'
+#############
 
-url = URI("https://api.content.tripadvisor.com/api/v1/location/search?searchQuery=SantCugat&category=%22restaurants%22&language=en&key=586AFE7C1934478AB8D2FBF09FD73AEB")
 
-http = Net::HTTP.new(url.host, url.port)
-http.use_ssl = true
+############ TRIP ADVISOR API 
 
-request = Net::HTTP::Get.new(url)
-request["Accept"] = 'application/json'
+# require 'uri'
+# require 'net/http'
+# require 'openssl'
 
-response = http.request(request)
-puts response.read_body
+# url = URI("https://api.content.tripadvisor.com/api/v1/location/search?searchQuery=SantCugat&category=%22restaurants%22&language=en&key=")
+
+# http = Net::HTTP.new(url.host, url.port)
+# http.use_ssl = true
+
+# request = Net::HTTP::Get.new(url)
+# request["Accept"] = 'application/json'
+
+# response = http.request(request)
+# puts response.read_body
+
+
+############### 
+
+
+############## AMADEUS 
+
+require 'amadeus'
+
+amadeus = Amadeus::Client.new({
+  client_id: "#{ENV['AMADEUS_KEY'",
+  client_secret: 'REPLACE_BY_YOUR_API_SECRET'
+})
+
+begin
+  puts amadeus.shopping.flight_offers_search.get(originLocationCode: 'NYC', destinationLocationCode: 'MAD', departureDate: '2021-05-01', adults: 1, max: 1).body
+rescue Amadeus::ResponseError => error
+  puts error
+end
