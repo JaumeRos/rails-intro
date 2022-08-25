@@ -73,3 +73,4 @@ gem 'rest-client'
 gem 'json'
 gem 'pry'
 
+gem 'amadeus'

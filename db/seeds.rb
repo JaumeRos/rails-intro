@@ -46,16 +46,24 @@
 
 
 ############## AMADEUS 
+#           # puts "You should check out this bar: #{array["name"]}! also check out the coordinates incase ur a geofreak: #{array["geoCode"]}"
+
 
 require 'amadeus'
 
 amadeus = Amadeus::Client.new({
-  client_id: "#{ENV['AMADEUS_KEY'",
-  client_secret: 'REPLACE_BY_YOUR_API_SECRET'
+  client_id: "#{ENV["AMADEUS_KEY"]}",
+  client_secret: "#{ENV["AMADEUS_SECRET"]}"
 })
 
 begin
-  puts amadeus.shopping.flight_offers_search.get(originLocationCode: 'NYC', destinationLocationCode: 'MAD', departureDate: '2021-05-01', adults: 1, max: 1).body
+    response = amadeus.reference_data.locations.points_of_interest.get(latitude: 52.541755, longitude: 13.354201)
+    real_array = response.data
+ 
+    real_array.each do |array|
+        puts array
+    end
 rescue Amadeus::ResponseError => error
   puts error
 end
+
