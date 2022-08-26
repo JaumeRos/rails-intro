@@ -61,7 +61,7 @@ begin
     real_array = response.data
  
     real_array.each do |array|
-        puts array
+        puts array["name"]
     end
 rescue Amadeus::ResponseError => error
   puts error
