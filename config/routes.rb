@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cities
   get "about", to: "about#index"
 
   root to: "main#index"
