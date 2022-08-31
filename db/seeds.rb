@@ -144,10 +144,14 @@ response = http.request(request)
 parsed_json = JSON.parse(response.body)["data"]
 
 parsed_json.each do |please|
+  
 
-  Hotel.create 
-  puts "Here's some nice things to do in Barcelona: #{please["name"]}"
-
+  # hotels = Hotel.create(
+  #   name: please["name"],
+  #   description: please["address_string"],
+  #   category: please["location_id"]
+  # )
+  
 
 end 
 
