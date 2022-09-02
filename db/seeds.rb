@@ -158,3 +158,4 @@ end
 #### i'm going to need to add a hotels model - and then save the data into the hotels database - think i'm going to have to have some type of 
 ### database association from the cities databse to the hotels - no idea how yet. 
 
+
