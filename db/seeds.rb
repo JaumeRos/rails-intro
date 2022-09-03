@@ -149,7 +149,7 @@ parsed_json.each do |please|
   # hotels = Hotel.create(
   #   name: please["name"],
   #   description: please["address_string"],
-  #   category: please["location_id"]
+  #   category: please["location_id"] 
   # )
   
 
