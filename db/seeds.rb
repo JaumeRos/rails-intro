@@ -127,35 +127,68 @@
   # end   
 ###################
 
-require 'uri'
-require 'net/http'
-require 'openssl'
+# require 'uri'
+# require 'net/http'
+# require 'openssl'
 
-url = URI("https://api.content.tripadvisor.com/api/v1/location/search?searchQuery=barcelona&language=en&key=#{ENV["TRIP_KEY"]}")
+# url = URI("https://api.content.tripadvisor.com/api/v1/location/search?searchQuery=barcelona&language=en&key=#{ENV["TRIP_KEY"]}")
 
-http = Net::HTTP.new(url.host, url.port)
-http.use_ssl = true
+# http = Net::HTTP.new(url.host, url.port)
+# http.use_ssl = true
+
+# request = Net::HTTP::Get.new(url)
+# request["Accept"] = 'application/json'
+
+# response = http.request(request)
+
+# parsed_json = JSON.parse(response.body)["data"]
+
+# parsed_json.each do |please|
+  
+
+#   # hotels = Hotel.create(
+#   #   name: please["name"],
+#   #   description: please["address_string"],
+#   #   category: please["location_id"] 
+#   # )
+  
+
+# end 
+
+# #### i'm going to need to add a hotels model - and then save the data into the hotels database - think i'm going to have to have some type of 
+# ### database association from the cities databse to the hotels - no idea how yet. 
+
+
+####### New locationa api 
+
+require "uri"
+require "net/http"
+
+url = URI("https://countriesnow.space/api/v0.1/countries")
+
+https = Net::HTTP.new(url.host, url.port)
+https.use_ssl = true
 
 request = Net::HTTP::Get.new(url)
-request["Accept"] = 'application/json'
 
-response = http.request(request)
-
-parsed_json = JSON.parse(response.body)["data"]
-
-parsed_json.each do |please|
-  
-
-  # hotels = Hotel.create(
-  #   name: please["name"],
-  #   description: please["address_string"],
-  #   category: please["location_id"] 
-  # )
-  
-
-end 
-
-#### i'm going to need to add a hotels model - and then save the data into the hotels database - think i'm going to have to have some type of 
-### database association from the cities databse to the hotels - no idea how yet. 
+response = https.request(request)
+puts response["iso2"].read_body
 
 
+
+require "uri"
+require "net/http"
+
+url = URI("https://countriesnow.space/api/v0.1/countries/cities")
+
+https = Net::HTTP.new(url.host, url.port)
+https.use_ssl = true
+
+request = Net::HTTP::Post.new(url)
+request.body = "{\n    \"country\": \"nigeria\"\n}"
+
+response = https.request(request)
+puts response.read_body
+
+
+#fuck this bitch doesnt work either

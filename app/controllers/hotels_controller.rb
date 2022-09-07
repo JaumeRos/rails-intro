@@ -1,3 +1,5 @@
 class HotelsController < ApplicationController
-    @hotels
+   def index 
+     @hotels = Hotel.all
+   end 
 end
