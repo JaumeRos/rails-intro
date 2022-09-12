@@ -161,34 +161,50 @@
 
 ####### New locationa api 
 
-require "uri"
-require "net/http"
+# require "uri"
+# require "net/http"
 
-url = URI("https://countriesnow.space/api/v0.1/countries")
+# url = URI("https://countriesnow.space/api/v0.1/countries")
 
-https = Net::HTTP.new(url.host, url.port)
-https.use_ssl = true
+# https = Net::HTTP.new(url.host, url.port)
+# https.use_ssl = true
 
-request = Net::HTTP::Get.new(url)
+# request = Net::HTTP::Get.new(url)
 
-response = https.request(request)
-puts response["iso2"].read_body
+# response = https.request(request)
+# puts response["iso2"].read_body
 
 
 
-require "uri"
-require "net/http"
+# require "uri"
+# require "net/http"
 
-url = URI("https://countriesnow.space/api/v0.1/countries/cities")
+# url = URI("https://countriesnow.space/api/v0.1/countries/cities")
 
-https = Net::HTTP.new(url.host, url.port)
-https.use_ssl = true
+# https = Net::HTTP.new(url.host, url.port)
+# https.use_ssl = true
 
-request = Net::HTTP::Post.new(url)
-request.body = "{\n    \"country\": \"nigeria\"\n}"
+# request = Net::HTTP::Post.new(url)
+# request.body = "{\n    \"country\": \"nigeria\"\n}"
 
-response = https.request(request)
-puts response.read_body
+# response = https.request(request)
+# puts response.read_body
 
 
 #fuck this bitch doesnt work either
+
+## Trying scraping
+
+require "open-uri"
+require "nokogiri"
+
+ingredient = "chocolate"
+url = "https://en.wikipedia.org/wiki/List_of_metropolitan_areas_in_Spain"
+
+html_file = URI.open(url).read
+html_doc = Nokogiri::HTML(html_file)
+
+html_doc.search(".wikitable sortable jquery-tablesorter").each do |element|
+  puts element.text.strip
+  # puts element.attribute("href").value
+end
