@@ -195,16 +195,30 @@
 
 ## Trying scraping
 
-require "open-uri"
-require "nokogiri"
+# require "open-uri"
+# require "nokogiri"
 
-ingredient = "chocolate"
-url = "https://en.wikipedia.org/wiki/List_of_metropolitan_areas_in_Spain"
+# # ingredient = "chocolate"
+# url = "https://en.wikipedia.org/wiki/Urban_area_(France)"
 
-html_file = URI.open(url).read
-html_doc = Nokogiri::HTML(html_file)
+# html_file = URI.open(url).read
+# html_doc = Nokogiri::HTML(html_file)
+# french_city_array = []
 
-html_doc.search(".wikitable sortable jquery-tablesorter").each do |element|
-  puts element.text.strip
-  # puts element.attribute("href").value
-end
+# html_doc.search(".wikitable tbody td a").each do |element|
+#    puts element.text
+#   # puts element.attribute("href").value
+#   new_city = City.create(
+#     name: element.text
+#   )
+#   french_city_array << element
+
+# end
+
+# puts "Here's your fkn list:"
+
+# french_city_array.each_with_index do |element,index|
+#   puts "#{index + 1} - #{element.text}"
+
+# end 
+

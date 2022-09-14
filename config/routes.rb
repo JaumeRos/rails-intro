@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get "about", to: "about#index"
 
   get "hotels", to: "hotels#index"
+  get "cities", to: "cities#index"
 
 
   root to: "main#index"
