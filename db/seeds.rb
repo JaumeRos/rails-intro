@@ -268,15 +268,6 @@ url = "https://en.wikipedia.org/wiki/List_of_communes_in_France_with_over_20,000
 html_file = URI.open(url).read
 html_doc = Nokogiri::HTML(html_file)
 
-massive_list_of_french = []
-
-html_doc.search(".wikitable tbody td a").each do |element|
-  puts element.text
-  # puts element.attribute("href").value
-  # new_city = City.create(
-  #   name: element.text
-  # )
-
-  massive_list_of_french << element
-
+html_doc.search(".wikitable tbody td:first-child a")[0..-9].each_with_index do |element, index|
+  puts "#{index + 1} - #{element.text}"
 end
