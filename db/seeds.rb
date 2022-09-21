@@ -195,30 +195,61 @@
 
 ## Trying scraping
 
+
+
+####### So this actually worked - we scraped some french cities - sick 1 !!!!!!!!!!!!  ####
+
+# require "open-uri"
+# require "nokogiri"
+
+# # ingredient = "chocolate"
+# url = "https://en.wikipedia.org/wiki/Urban_area_(France)"
+
+# html_file = URI.open(url).read
+# html_doc = Nokogiri::HTML(html_file)
+# french_city_array = []
+
+# html_doc.search(".wikitable tbody td a").each do |element|
+#    puts element.text
+#   # puts element.attribute("href").value
+#   # new_city = City.create(
+#   #   name: element.text
+#   # )
+#   french_city_array << element
+
+# end
+
+# puts "Here's your fkn list:"
+
+# french_city_array.each_with_index do |element,index|
+#   puts "#{index + 1} - #{element.text}"
+
+# end 
+
 require "open-uri"
 require "nokogiri"
 
 # ingredient = "chocolate"
-url = "https://en.wikipedia.org/wiki/Urban_area_(France)"
+url = "https://en.wikipedia.org/wiki/List_of_communes_in_France_with_over_20,000_inhabitants"
 
 html_file = URI.open(url).read
 html_doc = Nokogiri::HTML(html_file)
-french_city_array = []
 
-html_doc.search(".wikitable tbody td a").each do |element|
-   puts element.text
+jumi_table = html_doc.search(".wikitable tbody td a")
+
+real_table = jumi_table[0]
+
+real_table.each_with_index do |element,index|
+  puts "#{index + 1} - #{element}"
   # puts element.attribute("href").value
   # new_city = City.create(
   #   name: element.text
   # )
-  french_city_array << element
 
 end
 
-puts "Here's your fkn list:"
+# puts "Here's your fkn list:"
 
-french_city_array.each_with_index do |element,index|
-  puts "#{index + 1} - #{element.text}"
-
-end 
-
+# french_city_array.each_with_index do |element,index|
+#   puts "#{index + 1} - #{element.text}"
+# end 

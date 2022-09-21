@@ -10,8 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_31_111523) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_21_091806) do
   create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "country_frances", force: :cascade do |t|
+    t.string "name"
+    t.integer "french_cities_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["french_cities_id"], name: "index_country_frances_on_french_cities_id"
+  end
+
+  create_table "french_cities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -27,5 +41,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_31_111523) do
     t.index ["city_id"], name: "index_hotels_on_city_id"
   end
 
+  add_foreign_key "country_frances", "french_cities", column: "french_cities_id"
   add_foreign_key "hotels", "cities"
 end

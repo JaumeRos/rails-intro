@@ -1,0 +1,2 @@
+class FrenchCity < ApplicationRecord
+end
