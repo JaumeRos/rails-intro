@@ -277,3 +277,5 @@
 
 # end
 
+
+#  check this out https://tosbourn.com/ruby-on-rails-seo/ 
