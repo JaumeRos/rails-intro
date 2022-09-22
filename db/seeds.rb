@@ -258,16 +258,22 @@
 #   puts "#{index + 1} - #{element.text}"
 # end 
 
+#  I HAVE FUCKING SUCCESSFULLY GOTTEN THE FRENCH FUCKING CITIES LETS FUCKING GO MOTHERFUCKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-require "open-uri"
-require "nokogiri"
+# require "open-uri"
+# require "nokogiri"
 
-# ingredient = "chocolate"
-url = "https://en.wikipedia.org/wiki/List_of_communes_in_France_with_over_20,000_inhabitants"
+# # ingredient = "chocolate"
+# url = "https://en.wikipedia.org/wiki/List_of_communes_in_France_with_over_20,000_inhabitants"
 
-html_file = URI.open(url).read
-html_doc = Nokogiri::HTML(html_file)
+# html_file = URI.open(url).read
+# html_doc = Nokogiri::HTML(html_file)
+# french_city_array = []
 
-html_doc.search(".wikitable tbody td:first-child a")[0..-9].each_with_index do |element, index|
-  puts "#{index + 1} - #{element.text}"
-end
+# html_doc.search(".wikitable tbody td:first-child a")[0..-9].each do |element|
+#   new_french_city = FrenchCity.create(
+#     name: element.text
+#   )
+
+# end
+

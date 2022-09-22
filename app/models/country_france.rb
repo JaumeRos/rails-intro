@@ -1,3 +1,3 @@
 class CountryFrance < ApplicationRecord
-  belongs_to :french_cities
+  has_many :french_cities
 end
