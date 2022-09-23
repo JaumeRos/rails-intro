@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "hotels", to: "hotels#index"
   get "cities", to: "cities#index"
   get "country_france", to: "country_france#index"
-
+  get "country_france/:id", to: "country_france#show"
 
 
   root to: "main#index"
