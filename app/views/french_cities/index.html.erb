@@ -1,11 +1,14 @@
  <div class="container">
 
-<h1> Here are all your French Cities </h1>
-
-<ul>
+<h1>All Your French Cities</h1>
+<div>
   <% @french_cities.each do |city| %>
-    <li>  <%= link_to city.name %></li>
+    <p> <%= city.name %> </p>   
+    <p>
+      <%= link_to "Show this city", city %>
+      <br>
+    </p>
   <% end %>
-</ul>
-
 </div>
+</div>
+
