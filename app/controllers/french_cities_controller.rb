@@ -4,7 +4,7 @@ class FrenchCitiesController < ApplicationController
     end 
 
     def show 
-        @french_cities = FrenchCity.find(params[:id])
+        @french_cities = FrenchCity.friendly.find(params[:id])
     end 
 
  end

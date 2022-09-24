@@ -279,3 +279,6 @@
 
 
 #  check this out https://tosbourn.com/ruby-on-rails-seo/ 
+
+
+puts @french_cities.where(id: 1)

@@ -74,3 +74,4 @@ gem 'json'
 gem 'pry'
 
 gem 'amadeus'
+gem 'friendly_id', '~> 5.4.0'
