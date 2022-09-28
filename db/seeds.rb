@@ -271,9 +271,7 @@
 # french_city_array = []
 
 # html_doc.search(".wikitable tbody td:first-child a")[0..-9].each do |element|
-#   new_french_city = FrenchCity.create(
-#     name: element.text
-#   )
+#   french_city_array << element
 
 # end
 
@@ -281,4 +279,32 @@
 #  check this out https://tosbourn.com/ruby-on-rails-seo/ 
 
 
-puts @french_cities.where(id: 1)
+
+#  french_city_array.each do |city|
+#   puts city
+#  end
+
+
+
+require 'uri'
+require 'net/http'
+require 'openssl'
+
+france = FrenchCity.all
+
+france[0..9].each do |city|
+  name = city[:name]
+  
+url = URI("https://api.content.tripadvisor.com/api/v1/location/search?searchQuery=#{name}&language=en&key=586AFE7C1934478AB8D2FBF09FD73AEB")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+
+request = Net::HTTP::Get.new(url)
+request["accept"] = 'application/json'
+
+response = http.request(request)
+puts response.read_body
+
+
+end 
