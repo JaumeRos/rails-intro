@@ -285,26 +285,70 @@
 #  end
 
 
+#  THIS IS WORKING @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# require 'uri'
+# require 'net/http'
+# require 'openssl'
 
-require 'uri'
-require 'net/http'
-require 'openssl'
+# france = FrenchCity.all
+
+# france[0..9].each do |city|
+#   name = city[:name]
+  
+# url = URI("https://api.content.tripadvisor.com/api/v1/location/search?searchQuery=#{name}&language=en&key=ADDTHEFKNKEY")
+
+# http = Net::HTTP.new(url.host, url.port)
+# http.use_ssl = true
+
+# request = Net::HTTP::Get.new(url)
+# request["accept"] = 'application/json'
+
+# response = http.request(request)
+# puts response.read_body
+
+
+# end 
+
+###### This is fkn insane this also worked i got the fucking coordinates lets get it 
 
 france = FrenchCity.all
 
-france[0..9].each do |city|
-  name = city[:name]
-  
-url = URI("https://api.content.tripadvisor.com/api/v1/location/search?searchQuery=#{name}&language=en&key=586AFE7C1934478AB8D2FBF09FD73AEB")
+france[0..20].each do |city|
+  name = city[:slug]
 
-http = Net::HTTP.new(url.host, url.port)
-http.use_ssl = true
+  response = RestClient.get("http://api.openweathermap.org/geo/1.0/direct?q=#{name},FR&limit=1&appid=#{ENV["OPEN_WEATHER_KEY"]}")
+  location_key = JSON.parse(response)
 
-request = Net::HTTP::Get.new(url)
-request["accept"] = 'application/json'
+    location_key.each do |thing|
 
-response = http.request(request)
-puts response.read_body
+      p "So for this city: #{thing["name"]} the latitude is: #{thing["lat"]} and the longitude is #{thing["lon"]}"
 
+      frenchie = FrenchCity.find_or_initialize_by(slug: "#{name}")
+      frenchie.latitude = thing["lat"]
+      frenchie.longitude = thing["lon"]
+      frenchie.save
+
+    end
 
 end 
+
+
+# france = FrenchCity.all
+
+# france[0..2].each do |city|
+#   name = city[:name]
+#   lat = city[:latitude]
+#   lon = city[:longitude]
+
+
+#   response = RestClient.get("https://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&appid=#{ENV["OPEN_WEATHER_KEY"]}")
+#   location_key = JSON.parse(response)
+
+#   # p "Sup you retards, for the city of #{name} the current weather is: #{location_key["main"]}
+
+#   location_key["weather"].each do |weather|
+#     p "For the city of #{name} the current weather is: #{weather["main"]}"
+#   end 
+
+
+# end 
