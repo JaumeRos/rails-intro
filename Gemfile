@@ -75,3 +75,4 @@ gem 'pry'
 
 gem 'amadeus'
 gem 'friendly_id', '~> 5.4.0'
+gem 'whenever', require: false

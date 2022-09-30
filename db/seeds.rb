@@ -335,31 +335,24 @@
 ####### GOT THE LONGITUDE AND LATITUDE ON TO THE NEXT ONE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-# france = FrenchCity.all
-
-# france[0..2].each do |city|
-#   name = city[:name]
-#   lat = city[:latitude]
-#   lon = city[:longitude]
-
-
-#   response = RestClient.get("https://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&appid=#{ENV["OPEN_WEATHER_KEY"]}")
-#   location_key = JSON.parse(response)
-
-#   # p "Sup you retards, for the city of #{name} the current weather is: #{location_key["main"]}
-
-#   location_key["weather"].each do |weather|
-#     p "For the city of #{name} the current weather is: #{weather["main"]}"
-#   end 
-
-
-# end 
-
-
-##########
-
 france = FrenchCity.all
 
-france[473..944].each do |city|
-  city.destroy
+france[0..2].each do |city|
+  name = city[:name]
+  lat = city[:latitude]
+  lon = city[:longitude]
+
+
+  response = RestClient.get("https://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&appid=#{ENV["OPEN_WEATHER_KEY"]}")
+  location_key = JSON.parse(response)
+
+  p "Sup you retards, for the city of #{name} the current weather is: #{location_key["main"]}"
+
+  location_key["weather"].each do |weather|
+    p "For the city of #{name} the current weather is: #{weather["main"]}"
+  end 
+
+
 end 
+
+
