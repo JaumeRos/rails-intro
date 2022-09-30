@@ -311,26 +311,28 @@
 
 ###### This is fkn insane this also worked i got the fucking coordinates lets get it 
 
-france = FrenchCity.all
+# france = FrenchCity.all
 
-france[0..20].each do |city|
-  name = city[:slug]
+# france.each do |city|
+#   name = city[:name].parameterize 
 
-  response = RestClient.get("http://api.openweathermap.org/geo/1.0/direct?q=#{name},FR&limit=1&appid=#{ENV["OPEN_WEATHER_KEY"]}")
-  location_key = JSON.parse(response)
+#   response = RestClient.get("http://api.openweathermap.org/geo/1.0/direct?q=#{name},FR&limit=1&appid=#{ENV["OPEN_WEATHER_KEY"]}")
+#   location_key = JSON.parse(response)
 
-    location_key.each do |thing|
+#     location_key.each do |thing|
 
-      p "So for this city: #{thing["name"]} the latitude is: #{thing["lat"]} and the longitude is #{thing["lon"]}"
+#       p "So for this city: #{thing["name"]} the latitude is: #{thing["lat"]} and the longitude is #{thing["lon"]}"
 
-      frenchie = FrenchCity.find_or_initialize_by(slug: "#{name}")
-      frenchie.latitude = thing["lat"]
-      frenchie.longitude = thing["lon"]
-      frenchie.save
+#       frenchie = FrenchCity.find_or_initialize_by(name: "#{name}")
+#       frenchie.latitude = thing["lat"]
+#       frenchie.longitude = thing["lon"]
+#       frenchie.save!
 
-    end
+#     end
 
-end 
+# end 
+
+####### GOT THE LONGITUDE AND LATITUDE ON TO THE NEXT ONE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 # france = FrenchCity.all
@@ -352,3 +354,12 @@ end
 
 
 # end 
+
+
+##########
+
+france = FrenchCity.all
+
+france[473..944].each do |city|
+  city.destroy
+end 
