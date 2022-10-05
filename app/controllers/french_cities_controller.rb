@@ -5,6 +5,9 @@ class FrenchCitiesController < ApplicationController
 
     def show 
         @french_cities = FrenchCity.friendly.find(params[:id])
+
+        weather_object = Weather.new("97210")
+        @humidity = weather_object.weather()
     end 
 
  end
