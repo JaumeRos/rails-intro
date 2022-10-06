@@ -6,8 +6,7 @@ class FrenchCitiesController < ApplicationController
     def show 
         @french_cities = FrenchCity.friendly.find(params[:id])
 
-        weather_object = Weather.new("97210")
-        @humidity = weather_object.weather()
+        @data = GetWeatherService.new(latitude: @french_cities.latitude, longitude: @french_cities.longitude, units: "imperial").call
     end 
 
  end

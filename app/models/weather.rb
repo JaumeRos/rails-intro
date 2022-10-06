@@ -1,12 +1,14 @@
 class Weather < ApplicationRecord
+   belongs_to :french_city
 
-    def initialize(zip,)
-        @zip = zip
-        
-      end
+
+    def initialize(lon,lat)
+        @lon = FrenchCity.longitude
+        @lat = FrenchCity.latitude     
+    end
     
       def get_weather
-        response = HTTParty.get('http://api.openweathermap.org/data/2.5/weather?zip=' + @zip + ',us&appid=[YOUR API KEY HERE]')
-        response["main"]["humidity"]
+        response = RestClient.get("https://api.openweathermap.org/data/2.5/weather?lat=#{@lat}&lon=#{@lon}&appid=#{ENV["OPEN_WEATHER_KEY"]}")
+        location_key = JSON.parse(response)
       end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_28_171217) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_05_124805) do
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -54,6 +54,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_171217) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_hotels_on_city_id"
+  end
+
+  create_table "weathers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "country_frances", "french_cities", column: "french_cities_id"

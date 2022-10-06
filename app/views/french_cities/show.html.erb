@@ -9,4 +9,12 @@
    <h2>This is their latitude: <%= @french_cities.latitude %></h2>
    <h2>This is their longitude: <%= @french_cities.longitude %></h2>
 
+   <p><%= Time.now %></p>
+     <p> Current weather for <%= @french_cities.name %> is:</p>
+   <p><%= @data["weather"].first["main"] %></p>
+   <p><%= @data["weather"].first["description"] %></p>
+
+
+  <%# <p>The exact temp is:<%= @data["main"].first["temp"] %>
+
    
