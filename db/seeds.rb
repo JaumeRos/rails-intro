@@ -335,24 +335,68 @@
 ####### GOT THE LONGITUDE AND LATITUDE ON TO THE NEXT ONE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
+# france = FrenchCity.all
+
+# france[0..2].each do |city|
+#   name = city[:name]
+#   lat = city[:latitude]
+#   lon = city[:longitude]
+
+
+#   response = RestClient.get("https://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&appid=#{ENV["OPEN_WEATHER_KEY"]}")
+#   location_key = JSON.parse(response)
+
+#   p "Sup you retards, for the city of #{name} the current weather is: #{location_key["main"]}"
+
+#   location_key["weather"].each do |weather|
+#     p "For the city of #{name} the current weather is: #{weather["main"]}"
+#   end 
+
+
+# end 
+
+
+
+
+require 'uri'
+require 'net/http'
+require 'openssl'
+
+
 france = FrenchCity.all
 
-france[0..2].each do |city|
+france[0..1].each do |city|
   name = city[:name]
   lat = city[:latitude]
   lon = city[:longitude]
 
 
-  response = RestClient.get("https://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&appid=#{ENV["OPEN_WEATHER_KEY"]}")
-  location_key = JSON.parse(response)
+url = URI("https://api.content.tripadvisor.com/api/v1/location/nearby_search?latLong=#{lat}%252C#{lon}&category=hotels&radius=10&language=en&key=#{ENV["TRIP_KEY"]}")
 
-  p "Sup you retards, for the city of #{name} the current weather is: #{location_key["main"]}"
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
 
-  location_key["weather"].each do |weather|
-    p "For the city of #{name} the current weather is: #{weather["main"]}"
-  end 
+request = Net::HTTP::Get.new(url)
+request["accept"] = 'application/json'
+
+response = http.request(request)
+real_answer = JSON.parse(response.body)
+
+
+real_answer["data"].each do |hotel|
+
+
+  p "Sup here's the #{name} and #{hotel["address_string"]} the  #{hotel["name"]} #{hotel["location_id"]}"
+
+      frenchie = FrenchCity.find_or_initialize_by(name: "#{name}")
+      frenchie.latitude = thing["lat"]
+      frenchie.longitude = thing["lon"]
+      frenchie.save!
+
 
 
 end 
 
 
+
+end
