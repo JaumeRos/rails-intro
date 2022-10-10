@@ -1,3 +1,3 @@
 class FrenchHotel < ApplicationRecord
-  belongs_to :FrenchCity
+  belongs_to :french_city
 end

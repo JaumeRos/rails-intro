@@ -388,10 +388,10 @@ real_answer["data"].each do |hotel|
 
   p "Sup here's the #{name} and #{hotel["address_string"]} the  #{hotel["name"]} #{hotel["location_id"]}"
 
-      frenchie = FrenchCity.find_or_initialize_by(name: "#{name}")
-      frenchie.latitude = thing["lat"]
-      frenchie.longitude = thing["lon"]
-      frenchie.save!
+      # frenchie = FrenchCity.find_or_initialize_by(name: "#{name}")
+      # frenchie.latitude = thing["lat"]
+      # frenchie.longitude = thing["lon"]
+      # frenchie.save!
 
 
 
