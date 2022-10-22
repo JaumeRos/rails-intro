@@ -1,6 +1,6 @@
 class FrenchCity < ApplicationRecord
     has_many :weathers
-    has_many :french_hotels
+    has_many :frotels
 
     extend FriendlyId
     friendly_id :name, use: :slugged

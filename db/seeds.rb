@@ -383,19 +383,15 @@ response = http.request(request)
 real_answer = JSON.parse(response.body)
 
 
-real_answer["data"].each do |hotel|
+  real_answer["data"].each do |hotel|
+
+        new_hotel =  Frotel.create(
+                          name: hotel["name"],
+                          french_city_id: FrenchCity.find_or_initialize_by(name: "#{name}").id
 
 
-  p "Sup here's the #{name} and #{hotel["address_string"]} the  #{hotel["name"]} #{hotel["location_id"]}"
-
-      frenchie = FrenchCity.find_or_initialize_by(name: "#{name}")
-      frenchie.latitude = thing["lat"]
-      frenchie.longitude = thing["lon"]
-      frenchie.save!
-
-
-
-end 
+        )
+  end 
 
 
 

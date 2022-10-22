@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_10_121919) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_130730) do
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -35,16 +35,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_121919) do
     t.index ["slug"], name: "index_french_cities_on_slug", unique: true
   end
 
-  create_table "french_hotels", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.integer "FrenchCity_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "location_id"
-    t.index ["FrenchCity_id"], name: "index_french_hotels_on_FrenchCity_id"
-  end
-
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -54,6 +44,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_121919) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "frotels", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.integer "rating"
+    t.integer "french_city_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["french_city_id"], name: "index_frotels_on_french_city_id"
   end
 
   create_table "hotels", force: :cascade do |t|
@@ -72,6 +72,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_121919) do
   end
 
   add_foreign_key "country_frances", "french_cities", column: "french_cities_id"
-  add_foreign_key "french_hotels", "FrenchCities"
+  add_foreign_key "frotels", "french_cities"
   add_foreign_key "hotels", "cities"
 end
