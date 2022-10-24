@@ -356,43 +356,68 @@
 # end 
 
 
+# THIS WORKS, AND IT SAVES PROPERLY BUT THE TRIPADVISOR API IS SHIT FUCK OFF. LET ME TRY SCRAPING. 
+
+# require 'uri'
+# require 'net/http'
+# require 'openssl'
 
 
-require 'uri'
-require 'net/http'
-require 'openssl'
+# france = FrenchCity.all
 
+# france[0..1].each do |city|
+#   name = city[:name]
+#   lat = city[:latitude]
+#   lon = city[:longitude]
+
+
+# url = URI("https://api.content.tripadvisor.com/api/v1/location/nearby_search?latLong=#{lat}%252C#{lon}&category=hotels&radius=10&language=en&key=#{ENV["TRIP_KEY"]}")
+
+# http = Net::HTTP.new(url.host, url.port)
+# http.use_ssl = true
+
+# request = Net::HTTP::Get.new(url)
+# request["accept"] = 'application/json'
+
+# response = http.request(request)
+# real_answer = JSON.parse(response.body)
+
+
+#   real_answer["data"].each do |hotel|
+
+#         new_hotel =  Frotel.create(
+#                           name: hotel["name"],
+#                           french_city_id: FrenchCity.find_or_initialize_by(name: "#{name}").id
+
+
+#         )
+#   end 
+
+
+
+# end
+
+
+# trying scraping one more time 
 
 france = FrenchCity.all
 
 france[0..1].each do |city|
-  name = city[:name]
-  lat = city[:latitude]
-  lon = city[:longitude]
 
+require "open-uri"
+require "nokogiri"
 
-url = URI("https://api.content.tripadvisor.com/api/v1/location/nearby_search?latLong=#{lat}%252C#{lon}&category=hotels&radius=10&language=en&key=#{ENV["TRIP_KEY"]}")
+# ingredient = "chocolate"
+url = "https://www.booking.com/reviews/fr/city/#{city.name}.en-gb.html?aid=356980&label=gog235jc-1BCCooTTjjAkgzWANoRogBAZgBCbgBGMgBDNgBAegBAYgCAagCBLgC6dXZmgbAAgHSAiQxMDU2NTcwNC02MTVkLTRjNmMtYjllZi04NWRkODBhZDE2NWTYAgXgAgE&sid=71483ca3752d9bebb275cf7988265628&out_of_stock=2"
 
-http = Net::HTTP.new(url.host, url.port)
-http.use_ssl = true
+html_file = URI.open(url).read
+html_doc = Nokogiri::HTML(html_file)
+french_city_array = []
 
-request = Net::HTTP::Get.new(url)
-request["accept"] = 'application/json'
+html_doc.search(".rlp-main-hotel__info")[0..9].each do |element|
 
-response = http.request(request)
-real_answer = JSON.parse(response.body)
+  puts "checkout this mad hotel in #{city.name}:" 
+  puts element.css(".rlp-main-hotel__hotel-name-link").text
 
-
-  real_answer["data"].each do |hotel|
-
-        new_hotel =  Frotel.create(
-                          name: hotel["name"],
-                          french_city_id: FrenchCity.find_or_initialize_by(name: "#{name}").id
-
-
-        )
-  end 
-
-
-
+end
 end
