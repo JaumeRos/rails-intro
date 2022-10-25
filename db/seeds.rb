@@ -474,12 +474,12 @@ france[0..2].each do |city|
 
     location_key.each do |thing|
 
-      # p "So for this city: #{thing["name"]} the latitude is: #{thing["lat"]} and the longitude is #{thing["lon"]}"
+      p "So for this city: #{thing["name"]} the latitude is: #{thing["lat"]} and the longitude is #{thing["lon"]}"
 
       frenchie = FrenchCity.find_or_initialize_by(name: "#{name}")
       frenchie.latitude = thing["lat"]
       frenchie.longitude = thing["lon"]
-      frenchie.update
+      frenchie.save!
 
     end
 
