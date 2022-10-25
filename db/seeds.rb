@@ -400,87 +400,24 @@
 
 # trying scraping one more time 
 
-# france = FrenchCity.all
-
-# france[0..1].each do |city|
-
-# require "open-uri"
-# require "nokogiri"
-
-# # ingredient = "chocolate"
-# url = "https://www.booking.com/reviews/fr/city/#{city.name}.en-gb.html?aid=356980&label=gog235jc-1BCCooTTjjAkgzWANoRogBAZgBCbgBGMgBDNgBAegBAYgCAagCBLgC6dXZmgbAAgHSAiQxMDU2NTcwNC02MTVkLTRjNmMtYjllZi04NWRkODBhZDE2NWTYAgXgAgE&sid=71483ca3752d9bebb275cf7988265628&out_of_stock=2"
-
-# html_file = URI.open(url).read
-# html_doc = Nokogiri::HTML(html_file)
-# french_city_array = []
-
-# html_doc.search(".rlp-main-hotel__container")[0..1].each do |element|
-
-#   puts "checkout this mad hotel in #{city.name}:" 
-
-#   #name:
-#   puts element.css(".rlp-main-hotel__hotel-name-link").text
-
-#   #link 
-#   puts element.css(".rlp-main-hotel__hotel-name-link").attribute("href").value
-
-#   #Ranking 
-#   puts element.css(".rlp-main-hotel__rank").text
-
-#   #Category 1 
-#   puts element.css(".rlp-main-hotel__theme-item__link")[0].text
-
-#   #Category 2
-#   puts element.css(".rlp-main-hotel__theme-item__link")[1].text
-
-#   #and now for the fucking image
-
-
-  
-
-
-
-  
-# end
-# end
-
-#  HAD TO RE SEED THE DATABASE WITH CITIES BECAUSE OF FUCKIGN POSTGRESQL FUCK ME 
-
-# require "open-uri"
-# require "nokogiri"
-
-# # ingredient = "chocolate"
-# url = "https://en.wikipedia.org/wiki/List_of_communes_in_France_with_over_20,000_inhabitants"
-
-# html_file = URI.open(url).read
-# html_doc = Nokogiri::HTML(html_file)
-
-# html_doc.search(".wikitable tbody td:first-child a")[0..-9].each do |element|
-#     new_city = FrenchCity.create(
-#     name: element.text
-#   )
-
-# end
-
-# GETTING THE LONGITUDE AND LATITUDE ONE MORE FUCKIGN TIME FUCK 
-
 france = FrenchCity.all
 
-france[0..2].each do |city|
-  name = city[:name].parameterize 
+france[0..1].each do |city|
 
-  response = RestClient.get("http://api.openweathermap.org/geo/1.0/direct?q=#{name},FR&limit=1&appid=#{ENV["OPEN_WEATHER_KEY"]}")
-  location_key = JSON.parse(response)
+require "open-uri"
+require "nokogiri"
 
-    location_key.each do |thing|
+# ingredient = "chocolate"
+url = "https://www.booking.com/reviews/fr/city/#{city.name}.en-gb.html?aid=356980&label=gog235jc-1BCCooTTjjAkgzWANoRogBAZgBCbgBGMgBDNgBAegBAYgCAagCBLgC6dXZmgbAAgHSAiQxMDU2NTcwNC02MTVkLTRjNmMtYjllZi04NWRkODBhZDE2NWTYAgXgAgE&sid=71483ca3752d9bebb275cf7988265628&out_of_stock=2"
 
-      p "So for this city: #{thing["name"]} the latitude is: #{thing["lat"]} and the longitude is #{thing["lon"]}"
+html_file = URI.open(url).read
+html_doc = Nokogiri::HTML(html_file)
+french_city_array = []
 
-      frenchie = FrenchCity.find_or_initialize_by(name: "#{name}")
-      frenchie.latitude = thing["lat"]
-      frenchie.longitude = thing["lon"]
-      frenchie.save!
+html_doc.search(".rlp-main-hotel__info")[0..9].each do |element|
 
-    end
+  puts "checkout this mad hotel in #{city.name}:" 
+  puts element.css(".rlp-main-hotel__hotel-name-link").text
 
-end 
+end
+end
