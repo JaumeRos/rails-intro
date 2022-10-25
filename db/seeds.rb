@@ -414,10 +414,30 @@ html_file = URI.open(url).read
 html_doc = Nokogiri::HTML(html_file)
 french_city_array = []
 
-html_doc.search(".rlp-main-hotel__info")[0..9].each do |element|
+html_doc.search(".rlp-main-hotel__container")[0..1].each do |element|
 
   puts "checkout this mad hotel in #{city.name}:" 
+
+  #name:
   puts element.css(".rlp-main-hotel__hotel-name-link").text
 
+  #link 
+  puts element.css(".rlp-main-hotel__hotel-name-link").attribute("href").value
+
+  #Ranking 
+  puts element.css(".rlp-main-hotel__rank").text
+
+  #Category 1 
+  puts element.css(".rlp-main-hotel__theme-item__link")[0].text
+
+  #Category 2
+  puts element.css(".rlp-main-hotel__theme-item__link")[1].text
+
+  
+
+
+
+  
 end
 end
+
