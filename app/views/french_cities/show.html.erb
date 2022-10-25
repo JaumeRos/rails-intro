@@ -6,30 +6,7 @@
 
    <h1>WELCOME TO <%= @french_cities.name %>  </h1>
 
-   <h2>This is their latitude: <%= @french_cities.latitude %></h2>
-   <h2>This is their longitude: <%= @french_cities.longitude %></h2>
-
-
-
-   <p><%= Time.now %></p>
-     <p> Current weather for <%= @french_cities.name %> is:</p>
-   <p><%= @weather_data["weather"].first["main"] %></p>
-   <p><%= @weather_data["weather"].first["description"] %></p>
-
-   <img src="http://openweathermap.org/img/wn<%= @weather_data["weather"].first["icon"] %>@2x.png" alt="">
-
-   <br>
-
-      <h2>Hotels:</h2>
-
-         <% @frotels.each do |hotel| %>
-         <h2>Here's a nice hotel: <%= hotel.name%>, the address is: <%= hotel.address%> and the rating: <%= hotel.rating%> </h2>
-         <h2>and the city that its attached to: <%= hotel.french_city.name%></h2>
-        <% end %>
-
-
-
-
+ 
 
   <%# <p>The exact temp is:<%= @data["main"].first["temp"] %>
 
