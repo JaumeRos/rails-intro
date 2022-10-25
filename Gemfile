@@ -67,7 +67,6 @@ end
 
 gem "tailwindcss-rails", "~> 2.0"
 
-require 'byebug'
 
 gem 'rest-client'
 gem 'json'
