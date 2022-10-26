@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_130730) do
 
   create_table "country_frances", force: :cascade do |t|
     t.string "name"
-    t.integer "french_cities_id", null: false
+    t.bigint "french_cities_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["french_cities_id"], name: "index_country_frances_on_french_cities_id"
@@ -53,7 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_130730) do
     t.string "name"
     t.string "address"
     t.integer "rating"
-    t.integer "french_city_id", null: false
+    t.bigint "french_city_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["french_city_id"], name: "index_frotels_on_french_city_id"
@@ -63,7 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_130730) do
     t.string "name"
     t.text "description"
     t.integer "rating"
-    t.integer "city_id", null: false
+    t.bigint "city_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_hotels_on_city_id"

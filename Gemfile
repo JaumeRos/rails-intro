@@ -12,7 +12,11 @@ gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
+<<<<<<< HEAD
 # Use PSQL as the database for Active Record
+=======
+# Use sqlite3 as the database for Active Record
+>>>>>>> parent of 5adc946 (Reverting back to commit: 3e9c77e1628175f208b0561250d7f5827031e0b7)
 gem 'pg'
 
 # Use the Puma web server [https://github.com/puma/puma]
@@ -67,7 +71,6 @@ end
 
 gem "tailwindcss-rails", "~> 2.0"
 
-require 'byebug'
 
 gem 'rest-client'
 gem 'json'

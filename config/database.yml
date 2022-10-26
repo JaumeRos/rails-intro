@@ -42,6 +42,7 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
+<<<<<<< HEAD
 development:
   adapter: postgresql
   encoding: unicode
@@ -69,10 +70,22 @@ development:
   # Defaults to warning.
   #min_messages: notice
  
+=======
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: my_database_development
+
+>>>>>>> parent of 5adc946 (Reverting back to commit: 3e9c77e1628175f208b0561250d7f5827031e0b7)
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
+<<<<<<< HEAD
   adapter: postgresql
   encoding: unicode
   database: myapp_test
@@ -80,3 +93,10 @@ test:
   username: 
   password:
   timeout: 5000
+=======
+  <<: *default
+  database: my_database_test
+production:
+  <<: *default
+  database: my_database_production
+>>>>>>> parent of 5adc946 (Reverting back to commit: 3e9c77e1628175f208b0561250d7f5827031e0b7)
