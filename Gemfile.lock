@@ -136,12 +136,6 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.8-arm64-darwin)
       racc (~> 1.4)
-<<<<<<< HEAD
-=======
-    nokogiri (1.13.8-x86_64-linux)
-      racc (~> 1.4)
->>>>>>> parent of 5adc946 (Reverting back to commit: 3e9c77e1628175f208b0561250d7f5827031e0b7)
-    pg (1.4.4)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -192,12 +186,11 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.4.4)
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
     strscan (3.0.4)
     tailwindcss-rails (2.0.12-arm64-darwin)
-      railties (>= 6.0.0)
-    tailwindcss-rails (2.0.12-x86_64-linux)
       railties (>= 6.0.0)
     thor (1.2.1)
     timeout (0.3.0)
@@ -224,7 +217,6 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
-  x86_64-linux
 
 DEPENDENCIES
   amadeus
@@ -235,12 +227,12 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   json
-  pg
   pry
   puma (~> 5.0)
   rails (~> 7.0.3, >= 7.0.3.1)
   rest-client
   sprockets-rails
+  sqlite3 (~> 1.4)
   stimulus-rails
   tailwindcss-rails (~> 2.0)
   turbo-rails

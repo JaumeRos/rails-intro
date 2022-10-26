@@ -6,14 +6,17 @@
 
    <h1>WELCOME TO <%= @french_cities.name %>  </h1>
 
-<<<<<<< HEAD
    <h2>This is their latitude: <%= @french_cities.latitude %></h2>
    <h2>This is their longitude: <%= @french_cities.longitude %></h2>
 
 
 
    <p><%= Time.now %></p>
- 
+     <p> Current weather for <%= @french_cities.name %> is:</p>
+   <p><%= @weather_data["weather"].first["main"] %></p>
+   <p><%= @weather_data["weather"].first["description"] %></p>
+
+   <img src="http://openweathermap.org/img/wn<%= @weather_data["weather"].first["icon"] %>@2x.png" alt="">
 
    <br>
 
@@ -27,9 +30,6 @@
 
 
 
-=======
- 
->>>>>>> parent of 5adc946 (Reverting back to commit: 3e9c77e1628175f208b0561250d7f5827031e0b7)
 
   <%# <p>The exact temp is:<%= @data["main"].first["temp"] %>
 
