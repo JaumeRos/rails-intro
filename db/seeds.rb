@@ -356,49 +356,12 @@
 # end 
 
 
-# THIS WORKS, AND IT SAVES PROPERLY BUT THE TRIPADVISOR API IS SHIT FUCK OFF. LET ME TRY SCRAPING. 
-
-# require 'uri'
-# require 'net/http'
-# require 'openssl'
 
 
-# france = FrenchCity.all
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-# france[0..1].each do |city|
-#   name = city[:name]
-#   lat = city[:latitude]
-#   lon = city[:longitude]
-
-
-# url = URI("https://api.content.tripadvisor.com/api/v1/location/nearby_search?latLong=#{lat}%252C#{lon}&category=hotels&radius=10&language=en&key=#{ENV["TRIP_KEY"]}")
-
-# http = Net::HTTP.new(url.host, url.port)
-# http.use_ssl = true
-
-# request = Net::HTTP::Get.new(url)
-# request["accept"] = 'application/json'
-
-# response = http.request(request)
-# real_answer = JSON.parse(response.body)
-
-
-#   real_answer["data"].each do |hotel|
-
-#         new_hotel =  Frotel.create(
-#                           name: hotel["name"],
-#                           french_city_id: FrenchCity.find_or_initialize_by(name: "#{name}").id
-
-
-#         )
-#   end 
-
-
-
-# end
-
-
-# trying scraping one more time 
 
 # france = FrenchCity.all
 
@@ -464,23 +427,36 @@
 
 # GETTING THE LONGITUDE AND LATITUDE ONE MORE FUCKIGN TIME FUCK 
 
-france = FrenchCity.all
+=======
+france[0..1].each do |city|
+  name = city[:name]
+  lat = city[:latitude]
+  lon = city[:longitude]
 
-france[0..2].each do |city|
-  name = city[:name].parameterize 
 
-  response = RestClient.get("http://api.openweathermap.org/geo/1.0/direct?q=#{name},FR&limit=1&appid=#{ENV["OPEN_WEATHER_KEY"]}")
-  location_key = JSON.parse(response)
+url = URI("https://api.content.tripadvisor.com/api/v1/location/nearby_search?latLong=#{lat}%252C#{lon}&category=hotels&radius=10&language=en&key=#{ENV["TRIP_KEY"]}")
 
-    location_key.each do |thing|
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
 
-      p "So for this city: #{thing["name"]} the latitude is: #{thing["lat"]} and the longitude is #{thing["lon"]}"
+request = Net::HTTP::Get.new(url)
+request["accept"] = 'application/json'
 
-      frenchie = FrenchCity.find_or_initialize_by(name: "#{name}")
-      frenchie.latitude = thing["lat"]
-      frenchie.longitude = thing["lon"]
-      frenchie.save!
+response = http.request(request)
+real_answer = JSON.parse(response.body)
 
-    end
 
-end 
+  real_answer["data"].each do |hotel|
+
+        new_hotel =  Frotel.create(
+                          name: hotel["name"],
+                          french_city_id: FrenchCity.find_or_initialize_by(name: "#{name}").id
+
+
+        )
+  end 
+
+
+
+end
+>>>>>>> parent of 3e9c77e (lets g0o0o0o0o0o got some scraping moving!!!!!!!! hoping this works)
